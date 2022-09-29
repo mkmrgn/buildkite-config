@@ -7,7 +7,7 @@ require "pathname"
 require "yaml"
 
 QUEUE = ENV["BUILDKITE_AGENT_META_DATA_QUEUE"] || "default"
-IMAGE_BASE = ENV["DOCKER_IMAGE"] || "988114616026.dkr.ecr.us-east-1.amazonaws.com/#{"#{QUEUE}-" unless QUEUE == 'default'}builds"
+IMAGE_BASE = ENV["DOCKER_IMAGE"] || "973266071021.dkr.ecr.us-east-1.amazonaws.com/#{"#{QUEUE}-" unless QUEUE == 'default'}builds"
 
 BASE_BRANCH = ([ENV["BUILDKITE_PULL_REQUEST_BASE_BRANCH"], ENV["BUILDKITE_BRANCH"], "main"] - [""]).first
 LOCAL_BRANCH = ([ENV["BUILDKITE_BRANCH"], "main"] - [""]).first
@@ -18,6 +18,7 @@ REBUILD_ID = ([ENV["BUILDKITE_REBUILT_FROM_BUILD_ID"]] - [""]).first
 
 MAINLINE = LOCAL_BRANCH == "main" || LOCAL_BRANCH =~ /\A[0-9-]+(?:-stable)?\z/
 
+ECR_PLUGIN = "ecr#v2.6.0"
 DOCKER_COMPOSE_PLUGIN = "docker-compose#v3.7.0"
 ARTIFACTS_PLUGIN = "artifacts#v1.2.0"
 
@@ -147,6 +148,13 @@ def step_for(subdirectory, rake_task, ruby: nil, service: "default")
       {
         ARTIFACTS_PLUGIN => {
           "download" => [".buildkite/*", ".buildkite/**/*"],
+        },
+      },
+      {
+        ECR_PLUGIN => {
+          "login" => "true",
+          "region" => "us-east-1",
+          "account_ids" => "988114616026"
         },
       },
       {
@@ -302,6 +310,13 @@ puts YAML.dump("steps" => [
             {
               ARTIFACTS_PLUGIN => {
                 "download" => [".dockerignore", ".buildkite/*", ".buildkite/**/*"],
+              },
+            },
+            {
+              ECR_PLUGIN => {
+                "login" => "true",
+                "region" => "us-east-1",
+                "account_ids" => "988114616026",
               },
             },
             {
