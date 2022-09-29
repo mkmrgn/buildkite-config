@@ -317,6 +317,8 @@ puts YAML.dump("steps" => [
                 "login" => "true",
                 "region" => "us-east-1",
                 "account_ids" => "988114616026",
+                "assume_role" => [
+                  "role_arn: arn:aws:iam::988114616026:user/ecr-admin"
               },
             },
             {
