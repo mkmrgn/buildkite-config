@@ -319,6 +319,7 @@ puts YAML.dump("steps" => [
                 "account_ids" => "988114616026",
                 "assume_role" => [
                   "role_arn: arn:aws:iam::988114616026:user/ecr-admin"
+                ],
               },
             },
             {
