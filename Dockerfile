@@ -106,11 +106,11 @@ RUN chmod +x /usr/local/bin/await-all /usr/local/bin/runner
 
 # Wildcard ignores missing files; .empty ensures ADD always has at least
 # one valid source: https://stackoverflow.com/a/46801962
-ADD .buildkite/.empty actioncable/package.jso[n] actioncable/
-ADD .buildkite/.empty actiontext/package.jso[n] actiontext/
-ADD .buildkite/.empty actionview/package.jso[n] actionview/
-ADD .buildkite/.empty activestorage/package.jso[n] activestorage/
-ADD .buildkite/.empty package.jso[n] yarn.loc[k] .yarnr[c] ./
+ADD .empty actioncable/package.jso[n] actioncable/
+ADD .empty actiontext/package.jso[n] actiontext/
+ADD .empty actionview/package.jso[n] actionview/
+ADD .empty activestorage/package.jso[n] activestorage/
+ADD .empty package.jso[n] yarn.loc[k] .yarnr[c] ./
 
 RUN rm -f .empty */.empty \
     && find . -maxdepth 1 -type d -empty -exec rmdir '{}' '+' \
@@ -124,7 +124,7 @@ RUN rm -f .empty */.empty \
     fi
 
 ADD */*.gemspec tmp/
-ADD .buildkite/.empty railties/exe/* railties/exe/
+ADD .empty railties/exe/* railties/exe/
 ADD Gemfile Gemfile.lock RAILS_VERSION rails.gemspec ./
 
 RUN rm -f railties/exe/.empty \
