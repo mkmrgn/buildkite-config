@@ -123,7 +123,7 @@ RUN rm -f .empty */.empty \
         && (cd actionview && npm install); \
     fi
 
-ADD ../*.gemspec tmp/
+ADD rails.gemspec tmp/
 ADD .empty railties/exe/* railties/exe/
 ADD Gemfile Gemfile.lock RAILS_VERSION rails.gemspec ./
 
