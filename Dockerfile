@@ -126,6 +126,7 @@ RUN rm -f .empty */.empty \
 ADD rails.gemspec tmp/
 ADD .empty railties/exe/* railties/exe/
 ADD Gemfile Gemfile.lock RAILS_VERSION rails.gemspec ./
+ADD RAILS_VERSION ./rails/
 
 RUN rm -f railties/exe/.empty \
     && find railties/exe -maxdepth 0 -type d -empty -exec rmdir '{}' '+' \
