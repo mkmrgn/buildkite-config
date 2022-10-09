@@ -22,4 +22,10 @@ ls -lah
 echo "--- END DEBUG ---"
 
 cd rails/$dir
+
+echo "--- DEBUG ---"
+pwd
+ls -lah
+echo "--- END DEBUG ---"
+
 exec bundle exec /bin/sh -e -c "$cmd"
