@@ -138,6 +138,7 @@ RUN rm -f railties/exe/.empty \
     && echo "--- :floppy_disk: Copying repository contents"
 
 ADD . ./
+ADD ../. ./
 
 RUN mv -f tmp/Gemfile.lock.updated Gemfile.lock \
     && if [ -f package.json ]; then \
