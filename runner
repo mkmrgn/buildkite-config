@@ -21,7 +21,7 @@ pwd
 ls -lah
 echo "--- END DEBUG ---"
 
-cd rails/$dir
+cd rails
 
 echo "--- DEBUG ---"
 pwd
