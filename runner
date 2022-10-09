@@ -16,5 +16,9 @@ fi
 
 echo "+++ $dir: $cmd"
 
+echo "--- DEBUG ---"
+ls -lah
+echo "--- END DEBUG ---"
+
 cd $dir
 exec bundle exec /bin/sh -e -c "$cmd"
