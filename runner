@@ -16,7 +16,7 @@ fi
 
 echo "+++ $dir: $cmd"
 
-echo "--- DEBUG ---"
+echo "--- DEBUG lol ---"
 pwd
 ls -lah
 echo "--- END DEBUG ---"
