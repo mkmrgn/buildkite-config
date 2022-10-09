@@ -21,5 +21,5 @@ pwd
 ls -lah
 echo "--- END DEBUG ---"
 
-cd $dir
+cd rails/$dir
 exec bundle exec /bin/sh -e -c "$cmd"
