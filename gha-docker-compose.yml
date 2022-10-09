@@ -1,0 +1,4 @@
+version: '3.6'
+services:
+  base:
+    image: 988114616026.dkr.ecr.us-west-2.amazonaws.com/builds:GHA_test
