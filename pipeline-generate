@@ -12,7 +12,6 @@ IMAGE_BASE = ENV["DOCKER_IMAGE"] || "988114616026.dkr.ecr.us-west-2.amazonaws.co
 BASE_BRANCH = ([ENV["BUILDKITE_PULL_REQUEST_BASE_BRANCH"], ENV["BUILDKITE_BRANCH"], "main"] - [""]).first
 LOCAL_BRANCH = ([ENV["BUILDKITE_BRANCH"], "main"] - [""]).first
 PULL_REQUEST = ([ENV["BUILDKITE_PULL_REQUEST"]] - ["false"]).first
-BUILDKITE_ANALYTICS_TOKEN = ([ENV["BUILDKITE_ANALYTICS_TOKEN"]]
 
 BUILD_ID = ENV["BUILDKITE_BUILD_ID"]
 REBUILD_ID = ([ENV["BUILDKITE_REBUILT_FROM_BUILD_ID"]] - [""]).first
@@ -326,7 +325,7 @@ puts YAML.dump("steps" => [
                 "config" => ".buildkite/docker-compose.yml",
                 "image-name" => image_name_for(ruby, short: true),
                 "env" => [
-                  BUILDKITE_ANALYTICS_TOKEN
+                  "BUILDKITE_ANALYTICS_TOKEN"
                 ],
                 "cache-from" => [
                   REBUILD_ID && "base:" + image_name_for(ruby, REBUILD_ID),
