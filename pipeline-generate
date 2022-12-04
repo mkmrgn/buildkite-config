@@ -193,32 +193,32 @@ end
 
 # GROUP 1: Runs additional isolated tests for non-PR builds
 #%w(
-#  actionpack      test                default
-#  actionmailer    test                default
-#  activemodel     test                default
-#  activesupport   test                default
-#  actionview      test                default
-#  activejob       test                default
-#  activerecord    mysql:test          mysqldb
-#  activerecord    mysql2:test         mysqldb
-#  activerecord    postgresql:test     postgresdb
-#  activerecord    sqlite3:test        default
-#).each_slice(3) do |dir, task, service|
-#  next if task == "mysql:test" && RAILS_VERSION >= Gem::Version.new("5.x")
-#
-#  steps_for(dir, task, service: service)
-#
-#  next unless MAINLINE
-#  next if task == "mysql:test"
-#
-#  if dir == "activerecord"
-#    step_for(dir, task.sub(":test", ":isolated_test"), service: service) do |x|
-#      x["parallelism"] = 5 if REPO_ROOT.join("activerecord/Rakefile").read.include?("BUILDKITE_PARALLEL")
+  actionpack      test                default
+  actionmailer    test                default
+  activemodel     test                default
+  activesupport   test                default
+  actionview      test                default
+  activejob       test                default
+  activerecord    mysql:test          mysqldb
+  activerecord    mysql2:test         mysqldb
+  activerecord    postgresql:test     postgresdb
+  activerecord    sqlite3:test        default
+).each_slice(3) do |dir, task, service|
+  next if task == "mysql:test" && RAILS_VERSION >= Gem::Version.new("5.x")
+
+  steps_for(dir, task, service: service)
+
+  next unless MAINLINE
+  next if task == "mysql:test"
+
+  if dir == "activerecord"
+    step_for(dir, task.sub(":test", ":isolated_test"), service: service) do |x|
+      x["parallelism"] = 5 if REPO_ROOT.join("activerecord/Rakefile").read.include?("BUILDKITE_PARALLEL")
 #    end
 #  else
-#    step_for(dir, "#{task}:isolated", service: service)
-#  end
-#end
+    step_for(dir, "#{task}:isolated", service: service)
+  end
+end
 
 # GROUP 2: No isolated tests, runs for each supported ruby
 %w(
