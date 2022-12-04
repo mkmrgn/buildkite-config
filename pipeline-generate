@@ -214,9 +214,9 @@ end
   if dir == "activerecord"
     step_for(dir, task.sub(":test", ":isolated_test"), service: service) do |x|
       x["parallelism"] = 5 if REPO_ROOT.join("activerecord/Rakefile").read.include?("BUILDKITE_PARALLEL")
-#    end
+    end
 #  else
-    step_for(dir, "#{task}:isolated", service: service)
+#    step_for(dir, "#{task}:isolated", service: service)
   end
 end
 
