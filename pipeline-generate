@@ -332,7 +332,14 @@ puts YAML.dump("steps" => [
                 "config" => ".buildkite/docker-compose.yml",
                 "image-name" => image_name_for(ruby, short: true),
                 "env" => [
-                  "BUILDKITE_ANALYTICS_TOKEN"
+                  "BUILDKITE_ANALYTICS_TOKEN",
+                  "BUILDKITE_BUILD_ID",
+                  "BUILDKITE_BUILD_NUMBER",
+                  "BUILDKITE_JOB_ID",
+                  "BUILDKITE_BRANCH",
+                  "BUILDKITE_COMMIT",
+                  "BUILDKITE_MESSAGE",
+                  "BUILDKITE_BUILD_URL",
                 ],
                 "cache-from" => [
                   REBUILD_ID && "base:" + image_name_for(ruby, REBUILD_ID),
