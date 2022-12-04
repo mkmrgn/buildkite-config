@@ -192,7 +192,7 @@ def steps_for(subdirectory, rake_task, service: "default", &block)
 end
 
 # GROUP 1: Runs additional isolated tests for non-PR builds
-#%w(
+%w(
   actionpack      test                default
   actionmailer    test                default
   activemodel     test                default
