@@ -232,6 +232,7 @@ end
   steps_for(dir, task, service: service)
 end
 
+=begin
 # GROUP 3: Special cases
 
 if RAILS_VERSION >= Gem::Version.new("5.1.x")
@@ -276,6 +277,8 @@ end
 steps_for("railties", "test", service: "railties") do |x|
   x["parallelism"] = 12 if REPO_ROOT.join("railties/Rakefile").read.include?("BUILDKITE_PARALLEL")
 end
+
+=end
 
 # Ugly hacks to just get the build passing for now
 STEPS.find { |s| s["label"] == "activestorage (2.2)" }&.tap do |s|
