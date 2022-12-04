@@ -123,7 +123,7 @@ def step_for(subdirectory, rake_task, ruby: nil, service: "default")
     if rake_task.include?("isolated")
       "isolated"
     else
-      ruby || ONE_RUBY
+      "Testing: #{ruby} :ruby:" || ONE_RUBY
     end
 
   env = {
@@ -301,7 +301,7 @@ end
 
 puts YAML.dump("steps" => [
   {
-    "group" => "build",
+    "group" => "Build Docker image :docker:",
     "steps" => [
       *RUBIES.map do |ruby|
         {
